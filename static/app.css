@@ -1,0 +1,111 @@
+#main {
+  position: relative;
+}
+
+#header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  background: #444;
+  padding: 6px 6px;
+  overflow: hidden;
+  color: #fff;
+}
+
+#header h1 {
+  font-size: 22px;
+  float: left;
+  margin-right: 12px;
+  line-height: 1.5;
+}
+
+#header form .form-control {
+  font-size: 13px;
+}
+
+#header form #log_group {
+  width: 250px;
+  margin-right: 8px;
+  float: left;
+}
+
+#header form #log_stream {
+  width: 150px;
+  margin-right: 8px;
+  float: left;
+}
+
+#header form #filter {
+  width: 40%;
+  margin-right: 8px;
+  float: left;
+}
+
+#header form #start_time {
+  width: 150px;
+  margin-right: 8px;
+  float: left;
+}
+
+#header button {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+#error {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 50px;
+  height: 40px;
+  line-height: 40px;
+  background: #e05a50;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  text-align: center;
+  display: none;
+}
+
+#results {
+  background: #fff;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 50px;
+  bottom: 0px;
+  overflow: scroll;
+  padding: 6px;
+}
+
+.lines {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 12.5px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.lines .paginator {
+  color: #aaa;
+  text-align: center;
+}
+
+.lines .line .ts {
+  color: #554fc9;
+}
+
+.lines .line .src {
+  color: #da903e;
+  cursor: pointer;
+}
+
+.lines .line .src:hover {
+  text-decoration: underline;
+}
+
+.lines .line:hover {
+  background: #eee;
+}

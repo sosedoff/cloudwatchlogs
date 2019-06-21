@@ -2,6 +2,8 @@
 
 Web UI for accessing AWS Cloud Watch Logs.
 
+<img src="screenshot.png" />
+
 ## Usage
 
 ```

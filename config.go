@@ -8,14 +8,14 @@ import (
 )
 
 type Config struct {
-	Host         string `long:"host"`
-	Port         string `long:"port"`
-	AuthUser     string `long:"auth-user"`
-	AuthPassword string `long:"auth-pass"`
-	AccessKey    string `long:"access-key"`
-	SecretKey    string `long:"secret-key"`
-	Region       string `long:"region"`
-	Profile      string `long:"profile"`
+	Host         string `long:"host" default:"0.0.0.0" description:"Server host"`
+	Port         string `long:"port" default:"5555" description:"Server port"`
+	AuthUser     string `long:"auth-user" description:"User name for basic authentication"`
+	AuthPassword string `long:"auth-pass" description:"User password for basic authentication"`
+	AccessKey    string `long:"access-key" description:"AWS access key"`
+	SecretKey    string `long:"secret-key" description:"AWS secret key"`
+	Region       string `long:"region" description:"AWS region"`
+	Profile      string `long:"profile" description:"AWS CLI profile"`
 }
 
 func (c *Config) ListenAddr() string {
@@ -28,13 +28,6 @@ func readConfig() (*Config, error) {
 
 	if _, err := flags.ParseArgs(config, args); err != nil {
 		return nil, err
-	}
-
-	if config.Host == "" {
-		config.Host = "0.0.0.0"
-	}
-	if config.Port == "" {
-		config.Port = "5555"
 	}
 
 	if config.Region == "" {

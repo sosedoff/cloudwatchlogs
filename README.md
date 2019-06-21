@@ -2,6 +2,14 @@
 
 Web UI for accessing AWS Cloud Watch Logs.
 
+## Install
+
+Pull docker image:
+
+```
+docker pull sosedoff/cloudwatchlogs
+```
+
 ## Usage
 
 ```

@@ -2,8 +2,6 @@
 
 Web UI for accessing AWS Cloud Watch Logs.
 
-<img src="screenshot.png" />
-
 ## Usage
 
 ```
@@ -23,3 +21,11 @@ Application Options:
 Help Options:
   -h, --help        Show this help message
 ```
+
+## Screenshot
+
+<img src="screenshot.png" style="border: 1px solid #eee" />
+
+## License
+
+MIT

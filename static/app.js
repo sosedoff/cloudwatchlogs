@@ -16,6 +16,7 @@ function resetLogLines() {
   $(".lines").html("");
 }
 
+
 function setLines(events, nextToken) {
   var lines = [];
 
@@ -130,6 +131,7 @@ $(function() {
     $("#start_time").val("1h");
     $("#next_token").val("");
     $("#filter").val("");
+    $("#results").scrollTop(0);
     loadGroupStreams($(this).val());
     fetch();
   });
@@ -137,18 +139,21 @@ $(function() {
   $("#log_stream").on("change", function () {
     $("#results").data("append", false);
     $("#next_token").val("");
+    $("#results").scrollTop(0);
     fetch();
   });
 
   $("#start_time").on("change", function() {
     $("#results").data("append", false);
     $("#next_token").val("");
+    $("#results").scrollTop(0);
     fetch();
   });
 
   $("#filter").on("change", function() {
     $("#results").data("append", false);
     $("#next_token").val("");
+    $("#results").scrollTop(0);
   });
 
   $("body").on("click", "span.src", function(e) {

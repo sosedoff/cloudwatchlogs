@@ -26,8 +26,6 @@ RUN \
 WORKDIR /app
 
 COPY --from=build /cloudwatchlogs /app/cloudwatchlogs
-COPY static /app/static
-COPY templates /app/templates
 
 EXPOSE 5555
 CMD ["/app/cloudwatchlogs"]

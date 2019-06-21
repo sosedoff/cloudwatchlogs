@@ -10,6 +10,19 @@ Pull docker image:
 docker pull sosedoff/cloudwatchlogs
 ```
 
+## Example
+
+```
+docker run \
+  --rm \
+  -p 5555:5555 \
+  -e AWS_ACCESS_KEY=key \
+  -e AWS_SECRET_KEY=secret \
+  sosedoff/cloudwatchlogs
+```
+
+App should be available at `http://localhost:5555`
+
 ## Usage
 
 ```

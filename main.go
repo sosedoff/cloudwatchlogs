@@ -2,15 +2,17 @@ package main
 
 import (
 	"fmt"
+	"html/template"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
-
-	"github.com/gin-gonic/gin"
-	flags "github.com/jessevdk/go-flags"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
+	"github.com/gin-gonic/gin"
+	flags "github.com/jessevdk/go-flags"
 )
 
 func serveLogStream(c *gin.Context) {
@@ -78,9 +80,36 @@ func serveHome(c *gin.Context) {
 		return
 	}
 
-	c.HTML(200, "search.html", gin.H{
+	c.HTML(200, "/static/index.html", gin.H{
 		"log_groups": output.LogGroups,
 	})
+}
+
+func serveStaticAsset(c *gin.Context) {
+	asset, ok := Assets.Files[c.Request.URL.Path]
+	if !ok {
+		c.AbortWithStatus(404)
+		return
+	}
+	c.Data(200, "text/plain", asset.Data)
+}
+
+func loadTemplate() (*template.Template, error) {
+	t := template.New("")
+	for name, file := range Assets.Files {
+		if file.IsDir() || !strings.HasSuffix(name, ".html") {
+			continue
+		}
+		h, err := ioutil.ReadAll(file)
+		if err != nil {
+			return nil, err
+		}
+		t, err = t.New(name).Parse(string(h))
+		if err != nil {
+			return nil, err
+		}
+	}
+	return t, nil
 }
 
 func main() {
@@ -104,11 +133,15 @@ func main() {
 		log.Fatal(err)
 	}
 
+	tpl, err := loadTemplate()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.Default()
-	router.Static("/static", "./static")
-	router.LoadHTMLGlob("templates/*")
+	router.SetHTMLTemplate(tpl)
 
 	if config.AuthUser != "" && config.AuthPassword != "" {
 		router.Use(gin.BasicAuth(gin.Accounts{
@@ -121,6 +154,7 @@ func main() {
 	})
 
 	router.GET("/", serveHome)
+	router.GET("/static/:file", serveStaticAsset)
 	router.GET("/groups", serverGroupsList)
 	router.GET("/streams", serveStreamsList)
 	router.POST("/logs", serveLogStream)

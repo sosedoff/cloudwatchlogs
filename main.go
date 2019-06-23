@@ -112,6 +112,12 @@ func loadTemplate() (*template.Template, error) {
 	return t, nil
 }
 
+func setGinDefaults() {
+	gin.SetMode(gin.ReleaseMode)
+	gin.DisableConsoleColor()
+	log.SetFlags(log.LstdFlags)
+}
+
 func main() {
 	config, err := readConfig()
 	if err != nil {
@@ -138,7 +144,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	gin.SetMode(gin.ReleaseMode)
+	setGinDefaults()
 
 	router := gin.Default()
 	router.SetHTMLTemplate(tpl)

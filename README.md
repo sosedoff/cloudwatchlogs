@@ -4,6 +4,12 @@ Web UI for accessing AWS Cloud Watch Logs.
 
 ## Install
 
+Via Go:
+
+```
+go get github.com/sosedoff/cloudwatchlogs
+```
+
 Pull docker image:
 
 ```

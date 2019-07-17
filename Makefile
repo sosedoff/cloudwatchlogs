@@ -7,3 +7,7 @@ docker: build
 
 docker-release: docker
 	docker push sosedoff/cloudwatchlogs
+
+release:
+	mkdir -p ./dist
+	GOOS=linux GOARCH=amd64 go build -o ./dist/cloudwatchlogs-linux-amd64

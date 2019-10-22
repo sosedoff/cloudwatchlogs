@@ -128,7 +128,7 @@ $(function() {
   $("#log_group").on("change", function() {
     $("#results").data("append", false);
     $("#log_stream").val("");
-    $("#start_time").val("1h");
+    $("#start_time").val("5m");
     $("#next_token").val("");
     $("#filter").val("");
     $("#results").scrollTop(0);

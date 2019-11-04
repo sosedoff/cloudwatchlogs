@@ -7,6 +7,7 @@ import (
 	"github.com/jessevdk/go-flags"
 )
 
+// Config contains application configuration options
 type Config struct {
 	Host         string `long:"host" default:"0.0.0.0" description:"Server host"`
 	Port         string `long:"port" default:"5555" description:"Server port"`
@@ -18,6 +19,7 @@ type Config struct {
 	Profile      string `long:"profile" description:"AWS CLI profile"`
 }
 
+// ListenAddr returns the server bind address
 func (c *Config) ListenAddr() string {
 	return fmt.Sprintf("%s:%s", c.Host, c.Port)
 }

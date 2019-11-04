@@ -1,3 +1,6 @@
+install:
+	go get -u github.com/jessevdk/go-assets-builder
+
 build:
 	go-assets-builder static -o assets.go
 	go build

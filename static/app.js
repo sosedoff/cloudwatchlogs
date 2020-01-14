@@ -54,6 +54,16 @@ function loadInitialSearch() {
 
   for (var i = 0; i < chunks.length; i++) {
     var kv = chunks[i].split("=");
+
+    if (kv[0] == "filter") {
+      try {
+        kv[1] = atob(kv[1]);
+      }
+      catch(err) {
+        console.log("cant parse out filter value:", err);
+      }
+    }
+
     params[kv[0]] = unescape(kv[1]);
   }
 
@@ -93,6 +103,10 @@ function fetchLogEvents(form) {
   for (var i = 0; i < formData.length; i++) {
     var field = formData[i];
     if (field.name == "next_token") continue;
+
+    if (field.name == "filter") {
+      field.value = btoa(field.value);
+    }
 
     params.push(field.name + "=" + field.value);
   }

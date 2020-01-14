@@ -2,5 +2,5 @@ package main
 
 var (
 	// Version defines current application version
-	Version = "0.2.0"
+	Version = "0.2.1"
 )
